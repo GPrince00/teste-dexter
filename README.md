@@ -1,4 +1,4 @@
-# teste-dexter
+# Teste-Dexter
 
 Test for internship at Dex.
 
