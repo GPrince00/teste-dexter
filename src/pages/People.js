@@ -23,20 +23,23 @@ export default function People({ history }){
     }
 
     useEffect(() => {
-        localStorage.getItem('sessionToken') === null || "undefined" ? invalidToken() : loadItems();
+        localStorage.getItem('sessionToken') === null ||
+        localStorage.getItem('sessionToken') ===  "undefined" ? invalidToken() : loadItems();
     }, []);
 
 
     return (
        
-        <div className="main-container">
-            <NavBar></NavBar>
+        <div className="main-container">            
+            <NavBar></NavBar>        
             <div className="body">
+                {/* <p id="list">LIST OF PLACES</p>
+                <div id="retangle"/> */}
                 <ul>
                     {items.map(item =>(
                         <li key={item.objectId}>                            
                             <img src={item.link} alt={item.name} />
-                            <p>{item.name}</p>                                               
+                            <p>{item.name}</p>                                                    
                         </li>                    
                     ))}          
                 </ul>

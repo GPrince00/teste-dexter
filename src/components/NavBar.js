@@ -7,11 +7,11 @@ export default function NavBar() {
     return(
         <div className="menu">
         <img src={logo} alt="Orange" />
-        <div>
-            <Link to="/foods" className='menuItems'>FOODS</Link>
-            <Link to="/people" className='menuItems'>PEOPLE</Link>
-            <Link to="/places" className='menuItems'>PLACES</Link>            
-        </div>
+            <div>
+                <Link to="/foods" className='menuItems'>FOODS</Link>
+                <Link to="/people" className='menuItems'>PEOPLE</Link>
+                <Link to="/places" className='menuItems'>PLACES</Link>            
+            </div>
         </div>
     )
 }
