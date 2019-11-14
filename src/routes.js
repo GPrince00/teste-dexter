@@ -12,7 +12,7 @@ export default function Routes(){
             <Route path="/" exact component={Login} />            
             <Route path="/people" component={People} /> 
             <Route path="/places" component={Places} /> 
-            <Route path="/foods" component={Foods} />            
+            <Route path="/foods" component={Foods} />  
         </BrowserRouter>
     );
 }
