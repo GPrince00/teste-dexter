@@ -4,14 +4,26 @@ import styled from 'styled-components'
 
 import logo from '../assets/logo.png';
 
-export default function NavBar() {     
+export default function NavBar({ title }) { 
+    const selectedPlaces = (title) => {
+        return title === 'PLACES' ? 'selected' : 'unselected';
+    };
+    
+    const selectedFoods = (title) => {
+        return title === 'FOODS' ? 'selected' : 'unselected';
+    };
+    
+    const selectedPeople = (title) => {
+        return title === 'PEOPLE' ? 'selected' : 'unselected';
+    };
+    
     return(
         <Menu className="menu">
         <img src={logo} alt="Orange" />
             <div>
-                <Link to="/foods" className='menuItems'>FOODS</Link>
-                <Link to="/people" className='menuItems'>PEOPLE</Link>
-                <Link to="/places" className='menuItems'>PLACES</Link>            
+                <Link to="/foods" className={selectedFoods(title)}>FOODS</Link>
+                <Link to="/people" className={selectedPeople(title)}>PEOPLE</Link>
+                <Link to="/places" className={selectedPlaces(title)}>PLACES</Link>            
             </div>
         </Menu>
     )    
@@ -37,18 +49,32 @@ const Menu = styled.div`
         margin-bottom: 25px;
         margin-left: 25px;
     }
-
-    .menuItems {    
-        color: #000000;
+    
+    .unselected {
+        font-family: "Open sans";
+        color: #4A4A4A;
         font-weight: lighter;
         display: inline-block;
         margin-right: 20px;
+        letter-spacing: 1px;
+        line-height: 22px;
+    }
+    
+    .selected {
+        font-family: "Open sans";
+        color: #4A4A4A;
+        font-weight: bold;
+        display: inline-block;
+        margin-right: 20px;
+        letter-spacing: 1px;
+        line-height: 22px;
+        
     }
 
-    .menuItems:last-child {
-        margin-right: 40px;
+    a:last-child {
+        margin-right: 50px;
     }
-
+     
     a:Link {
         text-decoration:none;
     }       

@@ -7,29 +7,44 @@ import NavBar from './NavBar';
 import Card from './Card';
 import Separator from './Separator';
 
-export default function Page({ page, title, history }){
+export default function Page({ history, location }){
+
+    let show = {
+        '/places': {
+            'api': 'Place',
+            'title': 'PLACES'        
+        },
+        '/foods': {
+            'api': 'Food',
+            'title': 'FOODS'        
+        },
+        '/people': {
+            'api': 'Person',
+            'title': 'PEOPLE'        
+        }
+    };
 
     const [items, setItems] = useState([]);
 
     async function loadItems() {
-        const response = await api.get(`/classes/${page}`)
+        const response = await api.get(`/classes/${show[location.pathname].api}`)
         setItems(response.data.results);
     }
-
+    
     function invalidToken() {
         history.push('/');
     }
-
+    
     useEffect(() => {
         localStorage.getItem('sessionToken') === null ||
         localStorage.getItem('sessionToken') ===  "undefined" ? invalidToken() : loadItems();
-    }, []);
+    }, []);    
     
     return (
         <div>
-            <NavBar></NavBar>
+            <NavBar title = { show[location.pathname].title }></NavBar>
             <Body>
-                <Separator title = { title }></Separator>
+                <Separator title = { show[location.pathname].title }></Separator>
                 <Card items = { items }></Card>                
             </Body>
         </div>
