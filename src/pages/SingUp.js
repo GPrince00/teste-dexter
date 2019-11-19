@@ -7,45 +7,71 @@ import bg from '../assets/bg.jpg';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import lock from '../assets/lock.png';
+import phone from '../assets/phone.png';
 
-export default function Login({ history }) {
+export default function SingUp({ history }) {
     const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmpassword, setConfirmPassword] = useState('');
     const [check, setCheck] = useState(false);
     
 
     async function handleSubmit(e) {
         e.preventDefault();
-
-        try {
-            const response = await api.post('/login', {
-                username,
-                password
-            })   
-            history.push('/foods');        
-            localStorage.setItem('sessionToken', response.data.sessionToken);            
-        } catch (err) {
-            alert("Usuário ou senha invalidos!")   
-        }
+        if (password === "" || confirmpassword === "" || email === "" || username === "" || phone === "") {
+            alert("Todos os campos devem estar preenchidos!!")
+        } else {
+            if (password === confirmpassword){
+                try {
+                    await api.post('/users', {
+                        username,
+                        email,
+                        phone,
+                        password
+                    })                                 
+                    history.push('/');        
+                } catch (err) {
+                    alert("Usuário ou senha invalidos!")            
+                }
+            } else {
+                alert("Senhas não coincidem")
+            }
+        }        
     }   
-    
-    async function handleSubmit2(e){
-        e.preventDefault();
-        history.push('/singup/');          
-    }
+
     return (
-        
         <LoginContainer>
             <form onSubmit={handleSubmit}>                          
                 <img src={logo} alt="Orange" />
+                <div className="userInfoBox">
+                    <p className="userInfoText">Name</p>
+                    
+                    <input 
+                        className="userInfoInput"
+                        placeholder="Seu Nome"
+                        value={username}
+                        onChange={ e => setUsername(e.target.value)} 
+                    />                    
+                </div>
                 <div className="userInfoBox">
                     <p className="userInfoText">Email</p>
                     <img src={mail} atl="Mail" />
                     <input 
                         className="userInfoInput"
                         placeholder="seunome@email.com"
-                        value={username}
-                        onChange={ e => setUsername(e.target.value)} 
+                        value={email}
+                        onChange={ e => setEmail(e.target.value)} 
+                    />                    
+                </div>
+                <div className="userInfoBox">
+                    <p className="userInfoText">Phone</p>               
+                    <input 
+                        className="userInfoInput"
+                        placeholder="(11) 11111-1111"
+                        value={phone}
+                        onChange={ e => setPhone(e.target.value)} 
                     />                    
                 </div>
                 <div className="userInfoBox">
@@ -59,16 +85,24 @@ export default function Login({ history }) {
                         onChange={e => setPassword(e.target.value)}
                     />
                 </div>              
+                <div className="userInfoBox">
+                    <p className="userInfoText">Confirm Password</p>
+                    <img src={lock} atl="Lock" />
+                    <input 
+                        className="userInfoInput"
+                        type={check ? "text" : "password"}                   
+                        placeholder="Confirm Password"
+                        value={confirmpassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
+                    />
+                </div>              
                 <label id="showPassword">Mostrar Senha
                     <input 
                         id="checkBox" 
                         type="checkbox"  
                         onChange={e => setCheck(e.target.checked)}/>
-                </label>                               
-                <p id="problemsToAccess">Problemas para acessar sua conta?</p>
-                <button type="submit" id="btnLogin">Acessar</button>  
-                <p id="or">ou</p>
-                <button  onClick={handleSubmit2} id="btnSingUp">Cadastrar</button>  
+                </label>   
+                <button type="submit" id="btnLogin">Cadastrar</button>                               
                 <p id="termsOfUse">Termos de uso - Politica de privacidade</p>
             </form>
             <img src={bg} alt="backgroud" id="img1" />
@@ -84,9 +118,8 @@ const LoginContainer = styled.div`
     background-color: #F9F9F9;
 
     form {  
-        margin-top: 70px;
+        margin-top: 200px;
         margin-bottom: 20px;
-        margin-button: 100px;
         background-color: #FFFFFF;
         box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.1);
         letter-spacing: 1px; 
