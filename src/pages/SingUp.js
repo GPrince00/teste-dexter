@@ -7,7 +7,7 @@ import bg from '../assets/bg.jpg';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import lock from '../assets/lock.png';
-import phone from '../assets/phone.png';
+import user from '../services/user';
 
 export default function SingUp({ history }) {
     const [username, setUsername] = useState('');
@@ -15,30 +15,29 @@ export default function SingUp({ history }) {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [confirmpassword, setConfirmPassword] = useState('');
-    const [check, setCheck] = useState(false);
-    
+    const [check, setCheck] = useState(false);    
 
     async function handleSubmit(e) {
         e.preventDefault();
-        if (password === "" || confirmpassword === "" || email === "" || username === "" || phone === "") {
-            alert("Todos os campos devem estar preenchidos!!")
-        } else {
-            if (password === confirmpassword){
-                try {
-                    await api.post('/users', {
-                        username,
-                        email,
-                        phone,
-                        password
-                    })                                 
-                    history.push('/');        
-                } catch (err) {
-                    alert("Usuário ou senha invalidos!")            
-                }
-            } else {
-                alert("Senhas não coincidem")
-            }
-        }        
+
+        var res = await user.singUp(password, confirmpassword, email, username, phone, api);
+        switch (res){
+            case ("1"):
+                alert("Todos os campos devem estar preenchidos!!");
+                break;
+            case ("2"):
+                alert("Usuário Cadastrado");
+                history.push('/');
+                break;
+            case ("3"):
+                alert("Não foi possível cadastrar o usuário");
+                break;
+            case ("4"):
+                alert("Senhas não coincidem");
+                break;
+            default:
+                console.log("Deu ruim");
+        }
     }   
 
     return (

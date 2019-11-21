@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import api from '../services/api';
 
@@ -7,6 +7,7 @@ import bg from '../assets/bg.jpg';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import lock from '../assets/lock.png';
+import user from '../services/user';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
@@ -17,22 +18,22 @@ export default function Login({ history }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        try {
-            const response = await api.post('/login', {
-                username,
-                password
-            })   
-            history.push('/foods');        
-            localStorage.setItem('sessionToken', response.data.sessionToken);            
-        } catch (err) {
-            alert("Usuário ou senha invalidos!")   
+        var token = await user.login( username, password, api );
+        if (token == "1"){
+            alert("Usuário ou senha invalidos!");
+        } else {            
+            localStorage.setItem('sessionToken', token); 
+            console.log(token);
+            history.push('/foods');
         }
+        
     }   
     
     async function handleSubmit2(e){
         e.preventDefault();
         history.push('/singup/');          
     }
+    
     return (
         
         <LoginContainer>
