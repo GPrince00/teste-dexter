@@ -7,7 +7,8 @@ import bg from '../assets/bg.jpg';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import lock from '../assets/lock.png';
-import user from '../services/user';
+
+import aplication from '../services/aplication';
 
 export default function Login({ history }) {
     const [username, setUsername] = useState('');
@@ -18,14 +19,18 @@ export default function Login({ history }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        var token = await user.login( username, password, api );
-        if (token == "1"){
-            alert("Usuário ou senha invalidos!");
-        } else {            
-            localStorage.setItem('sessionToken', token); 
-            console.log(token);
-            history.push('/foods');
+        var token = await aplication.login( username, password, api );
+        if(token === "1"){
+            alert("Usuário ou senha não podem estar vazios")
+        } else {
+            if (token === "2"){
+                alert("Usuário ou senha invalidos!");
+            } else {            
+                localStorage.setItem('sessionToken', token);
+                history.push('/foods');
+            }
         }
+        
         
     }   
     

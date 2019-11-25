@@ -7,7 +7,7 @@ import bg from '../assets/bg.jpg';
 import logo from '../assets/logo.png';
 import mail from '../assets/mail.png';
 import lock from '../assets/lock.png';
-import user from '../services/user';
+import aplication from '../services/aplication';
 
 export default function SingUp({ history }) {
     const [username, setUsername] = useState('');
@@ -20,7 +20,7 @@ export default function SingUp({ history }) {
     async function handleSubmit(e) {
         e.preventDefault();
 
-        var res = await user.singUp(password, confirmpassword, email, username, phone, api);
+        var res = await aplication.singUp(password, confirmpassword, email, username, phone, api);
         switch (res){
             case ("1"):
                 alert("Todos os campos devem estar preenchidos!!");

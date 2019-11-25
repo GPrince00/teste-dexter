@@ -29,15 +29,30 @@ user.singUp = async ( password, confirmpassword, email, username, phone, api) =>
 
 
 user.login = async ( username, password, api ) => {
-    try {
-        const response = await api.post('/login', {
-            username,
-            password
-        });          
-        return response.data.sessionToken;            
-    } catch (err) {
-        return "1";
+    if (username === "" ||
+        password === ""
+    ){
+        return "1"
+    } else {
+        try {
+            const response = await api.post('/login', {
+                username,
+                password
+            });          
+            return response.data.sessionToken;            
+        } catch (err) {
+            return "2";
+        }
     }
-}  
+} 
+
+user.renderItems = async ( show, location, api ) => {
+    if(show[location.pathname] === undefined){
+        return 'wrong location.pathname';
+    } else {
+        const response = await api.get(`/classes/${show[location.pathname].api}`);
+        return response.data.results;
+    }
+}
 
 export default user;

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import api from '../services/api';
+import aplication from '../services/aplication';
 
 import NavBar from './NavBar';
 import Card from './Card';
 import Separator from './Separator';
+
+
 
 export default function Page({ history, location }){
 
@@ -26,10 +29,11 @@ export default function Page({ history, location }){
 
     const [items, setItems] = useState([]);
 
-    async function loadItems() {
-        const response = await api.get(`/classes/${show[location.pathname].api}`)
-        setItems(response.data.results);
+    var loadItems = async () => {
+        var response = await aplication.renderItems( show, location, api);
+        setItems(response);
     }
+    
     
     function invalidToken() {
         history.push('/');
