@@ -15,10 +15,44 @@ export default function Cards({ items }){
 }
 
 const Card = styled.ul `
+
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 25px;
+    grid-gap: 25px;  
+         
+    @media only screen and (max-width: 2000px) {               
+        grid-template-columns: repeat(4, 1fr);
+        p {
+            font-size: 28px;
+        }
+    }
+
+    @media only screen and (max-width: 1400px) {
+        grid-template-columns: repeat(3, 1fr);  
+        p {
+            font-size: 28px;
+        }             
+    }
+
+    @media only screen and (max-width: 900px) {
+        p {
+            font-size: 20px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        p {
+            font-size: 24px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        grid-template-columns: repeat(2, 1fr);
+        p {
+            font-size: 22px;
+        }
+    }
 
     li {
         position: relative;
@@ -27,8 +61,8 @@ const Card = styled.ul `
         box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.2);
 
         img {
-            width: 250px;
-            height: 250px;      
+            width: 100%;
+            height: 100%;      
         }
 
         p{
@@ -37,7 +71,6 @@ const Card = styled.ul `
             bottom: 10px;
             left: 10px;
             font-family: 'OpenSans', sans-serif;
-            font-size: 28px;
             font-weight: bold;
         }
     }

@@ -10,11 +10,11 @@ export default function ({ title }){
     )
  }
 
- const Separator = styled.div `   
+ const Separator = styled.div `      
     margin-bottom: 35px;
     width: 100%;
 
-    #list{
+    #list {
         color: #4A4A4A;
         font-family: 'OpenSans', sans-serif;
         font-size: 18px;
@@ -24,9 +24,9 @@ export default function ({ title }){
         margin-bottom: 10px;
     }
 
-    #retangle{
+    #retangle {
         background-image: linear-gradient(134.72deg, #AE23A9 0%, #DC4E1B 100%);
         box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.1);        
-        height: 5px;        
+        height: 5px;      
     }
  `;

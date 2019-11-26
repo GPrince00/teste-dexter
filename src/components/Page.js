@@ -48,17 +48,31 @@ export default function Page({ history, location }){
         <div>
             <NavBar title = { show[location.pathname].title }></NavBar>
             <Body>
-                <Separator title = { show[location.pathname].title }></Separator>
-                <Card items = { items }></Card>                
+                <div className = "teste">
+                    <Separator title = { show[location.pathname].title }></Separator>
+                    <Card items = { items }></Card>
+                    
+                </div>
             </Body>
         </div>
     )
  }
 
  const Body = styled.div`
-    max-width: 800px;
-    margin: 0 auto;    
-    padding: 30px 0;
-    text-align: center;
+      
+    @media only screen and (max-width: 2000px) {               
+        background-color: pink;
+        padding: 30px 20%;         
+    }
+
+    @media only screen and (max-width: 768px) {        
+        padding: 30px 10%;
+    }   
+
+    @media only screen and (max-width: 480px) {        
+        padding: 30px 5%;
+    }   
+
+        
  `;
  
