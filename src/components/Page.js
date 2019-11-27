@@ -61,7 +61,7 @@ export default function Page({ history, location }){
  const Body = styled.div`
       
     @media only screen and (max-width: 2000px) {               
-        background-color: pink;
+        //background-color: pink;
         padding: 30px 20%;         
     }
 

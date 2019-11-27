@@ -11,8 +11,8 @@ html, body, #root {
 }  
 
 body {
-    background: purple;    
-    /* background: #F9F9F9;     */
+    /* background: purple;     */
+    background: #F9F9F9;     
 }
 
 body, input, button {
