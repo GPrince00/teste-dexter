@@ -44,8 +44,8 @@ const Menu = styled.div`
         width: 100%;
         height: 100px;
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
         
         img {
             width: 230px;

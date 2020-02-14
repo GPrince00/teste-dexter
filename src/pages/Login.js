@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { Row, Col } from 'react-simple-flex-grid';
 import "react-simple-flex-grid/lib/main.css";
 
 import api from '../services/api';
@@ -31,9 +30,7 @@ export default function Login({ history }) {
                 localStorage.setItem('sessionToken', token);
                 history.push('/foods');
             }
-        }
-        
-        
+        }        
     }   
     
     async function handleSubmit2(e){
@@ -41,14 +38,13 @@ export default function Login({ history }) {
         history.push('/singup/');          
     }
     
-    return (
-        
+    return (        
         <LoginContainer>
             <form onSubmit={handleSubmit}>                          
                 <img src={logo} alt="Orange" />
                 <div className="userInfoBox">
                     <p className="userInfoText">Email</p>
-                    <img src={mail} atl="Mail" />
+                    <img src={mail} alt="Mail" />
                     <input 
                         className="userInfoInput"
                         placeholder="seunome@email.com"
@@ -58,7 +54,7 @@ export default function Login({ history }) {
                 </div>
                 <div className="userInfoBox">
                     <p className="userInfoText">Password</p>
-                    <img src={lock} atl="Lock" />
+                    <img src={lock} alt="Lock" />
                     <input 
                         className="userInfoInput"
                         type={check ? "text" : "password"}                   
@@ -94,7 +90,6 @@ const LoginContainer = styled.div`
     form {  
         margin-top: 70px;
         margin-bottom: 20px;
-        margin-button: 100px;
         background-color: #FFFFFF;
         box-shadow: 0 2px 7px 3px rgba(0, 0, 0, 0.1);
         letter-spacing: 1px; 

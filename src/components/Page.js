@@ -42,7 +42,7 @@ export default function Page({ history, location }){
     useEffect(() => {
         localStorage.getItem('sessionToken') === null ||
         localStorage.getItem('sessionToken') ===  "undefined" ? invalidToken() : loadItems();
-    }, []);    
+    }, [invalidToken, loadItems]);    
     
     return (
         <div>
