@@ -78,8 +78,7 @@ const Menu = styled.div`
             display: inline-block;
             margin-right: 20px;
             letter-spacing: 1px;
-            line-height: 22px;
-            
+            line-height: 22px;           
         }
         
         a:last-child {
@@ -111,8 +110,8 @@ const Menu = styled.div`
         }
 
         #toggle:checked + .nav {
-            display: block
-            text-aling: center;
+            display: block;
+            text-align: center;
             width: 100%;
         }
     }   
@@ -134,8 +133,8 @@ const Menu = styled.div`
         }
 
         #toggle:checked + .nav {
-            display: block
-            text-aling: center;
+            display: block;
+            text-align: center;
             width: 100%;
         }
     }
